@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <title>AxelBase – URI Component Analyzer</title>
+        <link rel="icon" href="../../AxelLab-Logo.ico" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        
+        
+		<link href="../../_app/immutable/assets/0.BBIxz8zf.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/5._dY2nMw_.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.cW4zd8s6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CoMqDKFJ.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BMsAxhO4.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bt5Ni7cT.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D8NZJvN_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BWvlS0Sf.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.D4Fpvlyo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DKWEGbHj.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/lylwZ68H.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CRbcPpHb.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.Bpg487nG.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/B6je8lW_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DCr9UMYd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D2HPMfSu.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CvbBy-FG.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DaJV3j9e.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/5.C7lQ43pK.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BF6dDnzP.js"><!--1tq17n3--><meta name="description" content="Learn the fundamentals of URI component analysis and how this tool helps developers debug percent-encoding issues in APIs and web requests."/> <meta property="og:title" content="Introduction to URI Component Analysis | URI Analyzer Blog"/> <meta property="og:description" content="Learn the fundamentals of URI component analysis and how this tool helps developers debug percent-encoding issues in APIs and web requests."/> <meta property="og:url" content="../../blog/posts/post1"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Introduction to URI Component Analysis | URI Analyzer Blog</title>
+    </head>
+    <body>
+        <div style="display: contents"><!--[--><!--[--><!----><header class="custom-navbar svelte-12qhfyh"><nav class="container-fluid navbar-content glass-card mx-3 my-2 px-4 py-2 svelte-12qhfyh"><div class="left-section svelte-12qhfyh"><a href="../../" class="brand-link svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="Logo" class="navbar-logo svelte-12qhfyh"/> <span class="brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-container svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><i class="bi bi-cup-hot-fill"></i> <span class="d-none d-sm-inline">Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <div class="right-section svelte-12qhfyh"><ul class="nav-links d-none d-lg-flex svelte-12qhfyh"><li><a class="nav-link svelte-12qhfyh" href="../../">Home</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#about">About</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#how-to">How to use</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#faq">FAQ</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../blog">Blog</a></li></ul> <button class="theme-toggle-btn svelte-12qhfyh" aria-label="Toggle Dark Mode"><i class="bi bi-moon-stars-fill theme-icon svelte-12qhfyh"></i></button> <button class="navbar-toggler d-lg-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-label="Toggle Mobile Navigation Menu"><i class="bi bi-list fs-3"></i></button></div></nav></header> <main><!--[--><!----><div class="container fade-in post-layout svelte-1tq17n3"><div class="breadcrumbs svelte-1tq17n3"><a href="../../blog" class="svelte-1tq17n3">Blog</a> <span>/</span> <p class="svelte-1tq17n3">Introduction to URI Component Analysis</p></div> <article class="prose svelte-1tq17n3"><h1 class="svelte-1tq17n3">Introduction to URI Component Analysis</h1> <p class="post-meta svelte-1tq17n3">Published: December 13, 2025</p> <p class="svelte-1tq17n3">Uniform Resource Identifiers, commonly known as URIs, are the foundation of web communication. They consist of several components such as scheme, authority, path, query, and fragment. Among these, the query parameters and path segments are particularly prone to encoding-related errors that can break API requests or lead to unexpected behavior. This is where URI component analysis becomes essential.</p> <p class="svelte-1tq17n3">The URI Component Analyzer and Debugger is a lightweight, client-side tool designed specifically to help developers inspect and troubleshoot percent-encoding in individual URI components. It allows you to input any string intended for use in a URI and instantly see how it behaves when encoded or decoded, along with potential issues that might affect interoperability.</p> <h2 class="svelte-1tq17n3">Why Focus on Individual Components?</h2> <p class="svelte-1tq17n3">While full URIs must follow strict syntax rules, individual components like query parameter values have their own encoding requirements. For example, spaces in a search term must be converted to %20 or +, and special characters like ampersands can prematurely terminate parameter parsing if left unencoded. Analyzing components in isolation reveals problems that might otherwise be hidden within a complete URL.</p> <p class="svelte-1tq17n3">This tool focuses on the most common pain points: malformed percent sequences, missing encoding of reserved characters, and accidental double-encoding. By breaking down the input and highlighting these issues early, developers can prevent 400 Bad Request errors and ensure reliable communication between clients and servers.</p> <h2 class="svelte-1tq17n3">Core Capabilities</h2> <p class="svelte-1tq17n3">The analyzer provides three primary modes. The analysis mode parses the input, attempts decoding, and flags problems such as incomplete percent triplets or invalid hexadecimal digits. Encoding mode applies standard percent-encoding rules, while decoding mode safely interprets encoded strings and reports errors when sequences are malformed.</p> <p class="svelte-1tq17n3">Additionally, the tool offers contextual debugging insights based on detected patterns, helping users understand not just what is wrong, but why it matters in real-world API scenarios.</p> <h2 class="svelte-1tq17n3">Who Benefits from This Tool?</h2> <p class="svelte-1tq17n3">Frontend and backend developers working with REST APIs, full-stack engineers building query strings dynamically, and anyone debugging HTTP requests will find immediate value. It is especially useful during development and testing phases when crafting or consuming URLs with complex parameters.</p> <p class="svelte-1tq17n3">Since all processing happens entirely in the browser, no data leaves your device, making it safe for sensitive or proprietary parameter values.</p> <h2 class="svelte-1tq17n3">Getting Started</h2> <p class="svelte-1tq17n3">Simply enter a string or encoded component, select the desired mode, and review the breakdown. The copy buttons make it easy to transfer corrected values back into your code or testing tools.</p> <p class="italic-note svelte-1tq17n3">Mastering URI component handling is a key skill for robust web development. This tool puts that power directly in your hands.</p></article></div><!----><!--]--></main> <footer class="custom-footer glass-card mx-3 mb-3 p-3 svelte-12qhfyh"><div class="container-fluid footer-content svelte-12qhfyh"><span>© 2025 AxelBase URI Analyzer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy</a> <span class="separator svelte-12qhfyh">•</span> <a href="../../terms" class="svelte-12qhfyh">Terms</a></div></div></footer><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1gpu532 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						assets: "/uri-analyzer"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.cW4zd8s6.js"),
+						import("../../_app/immutable/entry/app.D4Fpvlyo.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 5],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>

@@ -1,0 +1,67 @@
+<!doctype html>
+<html lang="en" data-bs-theme="light">
+    <head>
+        <title>AxelBase – URI Component Analyzer</title>
+        <link rel="icon" href="../../AxelLab-Logo.ico" />
+        <meta charset="utf-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1" />
+        
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Quicksand:wght@400;500;600;700&display=swap" rel="stylesheet">
+        
+        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH" crossorigin="anonymous">
+        
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.css">
+        
+        
+		<link href="../../_app/immutable/assets/0.BBIxz8zf.css" rel="stylesheet">
+		<link href="../../_app/immutable/assets/8.Ck2Aik3l.css" rel="stylesheet">
+		<link rel="modulepreload" href="../../_app/immutable/entry/start.cW4zd8s6.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CoMqDKFJ.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BMsAxhO4.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/Bt5Ni7cT.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D8NZJvN_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BWvlS0Sf.js">
+		<link rel="modulepreload" href="../../_app/immutable/entry/app.D4Fpvlyo.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DKWEGbHj.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/lylwZ68H.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CRbcPpHb.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/0.Bpg487nG.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/B6je8lW_.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DCr9UMYd.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/D2HPMfSu.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/CvbBy-FG.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/DaJV3j9e.js">
+		<link rel="modulepreload" href="../../_app/immutable/nodes/8.Uk5CMkHu.js">
+		<link rel="modulepreload" href="../../_app/immutable/chunks/BF6dDnzP.js"><!--led0iy--><meta name="description" content="Learn what double-encoding is, why it causes problems in APIs, and how the analyzer detects it to help you produce correct URI components."/> <meta property="og:title" content="Detecting and Avoiding Double-Encoding Errors | URI Analyzer Blog"/> <meta property="og:description" content="Learn what double-encoding is, why it causes problems in APIs, and how the analyzer detects it to help you produce correct URI components."/> <meta property="og:url" content="../../blog/posts/post4"/> <meta property="og:type" content="article"/> <meta name="twitter:card" content="summary_large_image"/><!----><title>Detecting and Avoiding Double-Encoding Errors | URI Analyzer Blog</title>
+    </head>
+    <body>
+        <div style="display: contents"><!--[--><!--[--><!----><header class="custom-navbar svelte-12qhfyh"><nav class="container-fluid navbar-content glass-card mx-3 my-2 px-4 py-2 svelte-12qhfyh"><div class="left-section svelte-12qhfyh"><a href="../../" class="brand-link svelte-12qhfyh" aria-label="Home"><img src="../../AxelLab-Logo.ico" alt="Logo" class="navbar-logo svelte-12qhfyh"/> <span class="brand-text svelte-12qhfyh">AxelBase</span></a> <div class="bmac-container svelte-12qhfyh"><button class="bmac-button svelte-12qhfyh"><i class="bi bi-cup-hot-fill"></i> <span class="d-none d-sm-inline">Buy me a coffee</span></button> <!--[!--><!--]--></div></div> <div class="right-section svelte-12qhfyh"><ul class="nav-links d-none d-lg-flex svelte-12qhfyh"><li><a class="nav-link svelte-12qhfyh" href="../../">Home</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#about">About</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#how-to">How to use</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../#faq">FAQ</a></li> <li><a class="nav-link svelte-12qhfyh" href="../../blog">Blog</a></li></ul> <button class="theme-toggle-btn svelte-12qhfyh" aria-label="Toggle Dark Mode"><i class="bi bi-moon-stars-fill theme-icon svelte-12qhfyh"></i></button> <button class="navbar-toggler d-lg-none ms-2" type="button" data-bs-toggle="collapse" data-bs-target="#mobileNav" aria-label="Toggle Mobile Navigation Menu"><i class="bi bi-list fs-3"></i></button></div></nav></header> <main><!--[--><!----><div class="container fade-in post-layout svelte-led0iy"><div class="breadcrumbs svelte-led0iy"><a href="../../blog" class="svelte-led0iy">Blog</a> <span>/</span> <p class="svelte-led0iy">Detecting and Avoiding Double-Encoding Errors</p></div> <article class="prose svelte-led0iy"><h1 class="svelte-led0iy">Detecting and Avoiding Double-Encoding Errors</h1> <p class="post-meta svelte-led0iy">Published: December 13, 2025</p> <p class="svelte-led0iy">Double-encoding is one of the most insidious issues in URI handling. It occurs when a string that has already been percent-encoded is passed through an encoding function a second time. The result transforms a properly encoded value like %20 into %2520, which most servers will not automatically correct.</p> <p class="svelte-led0iy">This mistake often leads to parameters being misinterpreted or treated as literal percent signs, causing API endpoints to return unexpected results or errors. Developers may spend hours debugging server logic only to discover the root cause was client-side over-encoding.</p> <h2 class="svelte-led0iy">How Double-Encoding Happens</h2> <p class="svelte-led0iy">Common scenarios include layered frameworks where multiple components each apply encoding defensively. For example, a utility function might encode a value before passing it to a URL builder that encodes again. Manual string concatenation can also introduce the problem when pre-encoded fragments are combined and then encoded as a whole.</p> <p class="svelte-led0iy">Another frequent trigger is copying encoded values from browser address bars or logs and then programmatically encoding them again before sending a follow-up request.</p> <h2 class="svelte-led0iy">Why Servers Don’t Always Fix It</h2> <p class="svelte-led0iy">While some web frameworks automatically decode parameters multiple times until no more percent sequences remain, this behavior is not universal or required by standards. Relying on server-side correction is risky because different implementations handle multiple encodings inconsistently.</p> <p class="svelte-led0iy">RFC 3986 specifies that percent-encoding should be applied only once to data characters. Extra encoding layers violate the intended URI syntax and can break normalization processes that expect single-level encoding.</p> <h2 class="svelte-led0iy">Detecting Potential Double-Encoding</h2> <p class="svelte-led0iy">The URI Component Analyzer helps identify possible double-encoding by attempting a second decode after the first. If the result differs from the initial decoded string and contains valid sequences, it flags the input as potentially double-encoded.</p> <p class="svelte-led0iy">This heuristic works because legitimate single-encoded values will produce the same string after a second decode attempt fails or yields no change. Double-encoded values, however, reveal their underlying correct form on the second pass.</p> <h2 class="svelte-led0iy">Best Practices to Avoid It</h2> <p class="svelte-led0iy">Encode only raw user input or decoded data, never already-encoded strings. Centralize URI construction in dedicated functions that track whether values have been processed. When receiving encoded data from external sources, treat it as final unless explicit decoding and re-encoding is required.</p> <p class="svelte-led0iy">Testing edge cases with the analyzer before integration catches these issues early and ensures clean, standards-compliant parameter encoding.</p> <p class="italic-note svelte-led0iy">Single, intentional encoding is the key to reliable and interoperable URIs across all systems.</p></article></div><!----><!--]--></main> <footer class="custom-footer glass-card mx-3 mb-3 p-3 svelte-12qhfyh"><div class="container-fluid footer-content svelte-12qhfyh"><span>© 2025 AxelBase URI Analyzer</span> <div class="footer-links svelte-12qhfyh"><a href="../../privacy" class="svelte-12qhfyh">Privacy</a> <span class="separator svelte-12qhfyh">•</span> <a href="../../terms" class="svelte-12qhfyh">Terms</a></div></div></footer><!----><!--]--> <!--[!--><!--]--><!--]-->
+			
+			<script>
+				{
+					__sveltekit_1gpu532 = {
+						base: new URL("../..", location).pathname.slice(0, -1),
+						assets: "/uri-analyzer"
+					};
+
+					const element = document.currentScript.parentElement;
+
+					Promise.all([
+						import("../../_app/immutable/entry/start.cW4zd8s6.js"),
+						import("../../_app/immutable/entry/app.D4Fpvlyo.js")
+					]).then(([kit, app]) => {
+						kit.start(app, element, {
+							node_ids: [0, 8],
+							data: [null,null],
+							form: null,
+							error: null
+						});
+					});
+				}
+			</script>
+		</div>
+        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-YvpcrYf0tY3lHB60NNkmXc5s9fDVZLESaAA55NDzOxhy9GkcIdslK1eN7N6jIeHz" crossorigin="anonymous"></script>
+    </body>
+</html>
